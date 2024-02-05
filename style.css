@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    padding: 40px;
+}
+.hero-content {
+    padding: 69px;
+}
+.page-break {
+    background-color: rgba(46, 45, 45, 0.23);
+    padding: 60px;
+    margin: auto auto;
+    display: flex;
+    align-items: center;
+}
+.page-break a {
+    margin: auto auto;
+}
+.row2 {
+    display: flex;
+}
+.row2 .dsc {
+    margin-top: 125px;
+}
+.profile-image {
+    width: 200px;
+    height: 200px;
+}
+.sidebar {
+    background-color: #333;
+    color: white;
+    height: 97.5%;
+}
+.sidebar a {
+    margin-left: 10px;
+    display: block;
+    color: white;
+    padding-bottom: 10px;
+    font-size: 20px;
+    text-decoration: none;
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.content {
+    background-color: whitesmoke;
+}
+.description {
+    padding: 15px;
+    margin: 15px;
+}
+.about {
+    padding: 15px;
+    text-align: center;
+}
+.info {
+    padding: 10px;
+}
+.profile-area {
+    padding: 80px 0;
+}
+.card {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    border-radius: 15px;
+}
+.img1 img {
+    height: 200px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    width: 100%;
+}
+.img2 img {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 7px solid black;
+    margin-top: -80px;
+}
+.card:hover .img2 img {
+    border-color: darkcyan;
+    transform: .7s;
+}
+.main-text{
+    padding: 30px 0;
+    text-align: center;
+}
+.main-text h2 {
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 20px;
+    margin: 0 0 20px;
+}
+.main-text p {
+    font-size: 16px;
+    padding: 0 35px;
+}
+.socials {
+    padding: 20px;
+}
+.socials i {
+    font-size: 20px;
+    color: darkcyan;
+    padding: 10px;
+}
+.form-area {
+    padding-top: 7%;
+}
+.row.single-form {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+}
+.left {
+    background: darkcyan;
+    padding: 200px 98px;
+    border-radius: 15px;
+}
+.left h2 {
+    color: white;
+    font-weight: 700;
+    font-size: 48px;
+}
+.left h2 span {
+    font-weight: 100;
+}
+.right {
+    padding: 70px 100px;
+    position: relative;
+}
+.right i {
+    position: absolute;
+    font-size: 80px;
+    left: -70px;   
+    top: 40%;
+    color: white;
+}
+.form-control {
+    border: 2px solid black;
+}
+.right button {
+    border: none;
+    background: darkcyan;
+    width: 180px;
+    color: white;
+    padding: 15px 0;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 16px;
+    cursor: pointer;
+}
+.right button:hover {
+    background: black;
+}
+.right button:active {
+    background: black;
+}
+.profile {
+    text-align: center;
+}
+.register {
+    text-align: center;
+    align-items: center;
+}
+.form-signup {
+    border-radius: 15px;
+    padding: 15px;
+    margin: 0 auto;
+    max-width: 400px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+.form-group {
+    padding: 15px;
+}
+.form-group button, .btn1 {
+    border: none;
+    background: darkcyan;
+    width: 150px;
+    color: white;
+    padding: 15px 0;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 16px;
+    cursor: pointer;
+}
+.form-group button, .btn1:hover {
+    background: black;
+}
+.form-group button, .btn1:active {
+    background: black;
+}
+.btn1 {
+    padding: 15px;
+    margin: 15px;
+}
