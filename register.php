@@ -1,3 +1,41 @@
+<?php 
+    require "config/config.php";
+
+    if (!empty($_SESSION['id'])) {
+        header("Location: home.php");
+    }
+
+if (isset($_POST["submit"])) {
+    $fname = $_POST["firstname"];
+    $lname = $_POST["lastname"];
+    $age = $_POST["age"];
+    $gender = $_POST["gender"];
+    $number = $_POST["phonenumber"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $repeat_password = $_POST["repeat_password"];
+
+
+    $duplicate = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'");
+
+    if (mysqli_num_rows($duplicate) > 0) {
+        echo 
+        "<script> alert('Username or Email already taken'); </script>";
+    }else {
+        if ($password == $repeat_password) {
+            $query = "INSERT INTO users (id, fname, lname, age, gender, number, email, password) VALUES ('','$fname', '$lname', '$age', '$gender','$number', '$email', '$password')";
+            mysqli_query($conn, $query);
+            echo 
+            "<script> alert('Registered Successfully'); </script>";
+        }else {
+            echo 
+            "<script> alert('Password does not match'); </script>";
+        }
+    }
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +51,7 @@
 <?php include "header.php";?>
 
     <div class="container register">
-        <form action="" class="form-signup">
+        <form action="" class="form-signup" method="post">
             <h2>Register</h2>
             <p>Create your account bench!</p>
             <div class="form-group">
@@ -33,7 +71,7 @@
                 <input type="text" name="gender" placeholder="Gender" class="form-control">
             </div>
             <div class="form-group">
-                <input type="tel" name="number" placeholder="Phone Number" maxlength="11" pattern="0[0-9]{10}" class="form-control">
+                <input type="tel" name="phonenumber" placeholder="Phone Number" maxlength="11" pattern="0[0-9]{10}" class="form-control">
             </div>
             <div class="form-group">
                 <input type="email" name="email" id="" placeholder="Email Address" class="form-control">
@@ -45,8 +83,9 @@
                 <input type="password" name="repeat_password" placeholder="Repeat Password:" pattern=".{6,}" class="form-control">
             </div>
             <div class="form-group">
-                <a href="login.php"><button class="btn btn-primary btn1">Log in</button></a>
+                <a href="login.php"><input type="submit" name="submit" placeholder="Submit" class="btn btn-primary btn1" id="submit"></a>
             </div>
+            <p>Already have an account? <a href="login.php">Log in</a></p>
         </form>
     </div>
 

@@ -1,3 +1,23 @@
+<?php 
+    session_start();
+
+    include("config/config.php");
+
+    // Save the current page URL in a session variable
+    $_SESSION['last_visited'] = $_SERVER['REQUEST_URI'];
+
+    if (!empty($_SESSION["id"])) {
+        $id = $_SESSION["id"];
+        $result = mysqli_query($conn, "SELECT * FROM users WHERE id = '$id'");
+        $row = mysqli_fetch_assoc($result);
+    }else {
+        //header("Location: login.php");
+    }
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

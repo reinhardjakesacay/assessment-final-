@@ -1,3 +1,8 @@
+<?php
+      include("config/config.php");
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +17,7 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Logo</a>
+    <a class="navbar-brand" href="home.php">Logo</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,7 +27,12 @@
         <a class="nav-link" href="profile.php">Profile</a>
         <a class="nav-link" href="gallery.php">Gallery</a>
         <a class="nav-link" href="contact.php">Contact Us</a>
-        <a class="nav-link" href="login.php">Log In</a>
+        <?php if (!empty($_SESSION['id'])) {
+          echo '<a href="config/logout.php" class="nav-link">Log out</a>';
+      } else {
+          echo '<a href="login.php" class="nav-link">Log in</a>';
+      }
+        ?>
       </div>
     </div>
   </div>

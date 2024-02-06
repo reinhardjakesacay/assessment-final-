@@ -1,3 +1,23 @@
+<?php 
+    session_start();
+
+    include("config/config.php");
+
+    // Save the current page URL in a session variable
+    $_SESSION['last_visited'] = $_SERVER['REQUEST_URI'];
+
+    if (!empty($_SESSION["id"])) {
+        $id = $_SESSION["id"];
+        $result = mysqli_query($conn, "SELECT * FROM users WHERE id = '$id'");
+        $row = mysqli_fetch_assoc($result);
+    }else {
+        header("Location: login.php");
+    }
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,14 +37,14 @@
                 <div class="col-md-4 mt-1">
                     <div class="card text-center sidebar">
                         <div class="card-body">
-                            <img src="images/hero.png" class="profile-image rounded-circle" alt="Profile picture">
+                            <img src="<?php echo $row['image']; ?>" class="profile-image rounded-circle" alt="Profile picture">
                             <div class="mt-3">
-                                <h3>Reinhard Jake Sacay</h3>
+                                <h3><?php echo $row['fname'] . " " . $row['lname']; ?></h3>
                                 <a href="home.php">Home</a>
                                 <a href="profile.php">Profile</a>
                                 <a href="gallery.php">Gallery</a>
                                 <a href="contact.php">Contact</a>
-                                <a href="#">Log out</a>
+                                <a href="config/logout.php">Log out</a>
                             </div>
                         </div>
                     </div>
@@ -38,7 +58,7 @@
                                 <h5>Full Name</h5>
                             </div>
                             <div class="col-md-9 text-secondary">
-                                Reinhard Jake Sacay
+                                <?php echo $row['fname'] . " " . $row['lname']; ?>
                             </div>
                         </div>
                         <div class="row info">
@@ -46,7 +66,7 @@
                                 <h5>Gender</h5>
                             </div>
                             <div class="col-md-9 text-secondary">
-                                Male
+                                <?php echo $row['gender']; ?>
                             </div>
                         </div>
                         <div class="row info">
@@ -54,7 +74,7 @@
                                 <h5>Age</h5>
                             </div>
                             <div class="col-md-9 text-secondary">
-                                21 years old
+                                <?php echo $row['age'] . " years old"; ?> 
                             </div>
                         </div>
                         <div class="row info">
@@ -62,7 +82,7 @@
                                 <h5>Email</h5>
                             </div>
                             <div class="col-md-9 text-secondary">
-                                reinhard@gmail.com
+                                <?php echo $row['email']; ?>
                             </div>
                         </div>
                         <div class="row info">
@@ -70,7 +90,7 @@
                                 <h5>Phone</h5>
                             </div>
                             <div class="col-md-9 text-secondary">
-                                09xxxxxxxxxx
+                                <?php echo $row['number']; ?>
                             </div>
                         </div>
                         <div class="row">

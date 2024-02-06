@@ -1,3 +1,21 @@
+<?php 
+    session_start();
+
+    include("config/config.php");
+
+    // Save the current page URL in a session variable
+    $_SESSION['last_visited'] = $_SERVER['REQUEST_URI'];
+
+    if (!empty($_SESSION["id"])) {
+        $id = $_SESSION["id"];
+        $result = mysqli_query($conn, "SELECT * FROM users WHERE id = '$id'");
+        $row = mysqli_fetch_assoc($result);
+    }else {
+        //header("Location: login.php");
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,14 +29,24 @@
 </head>
 <body>
     <?php include "header.php";?>
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="hero-content">
-                        <h1 class="dispay-1 fw-bold">Welcome</h1>
+                        <h1 class="dispay-1 fw-bold">Welcome, <?php if (!empty($_SESSION['id'])) {
+                            echo $row['fname'] . " " . $row['lname'];
+                        } else {
+                            echo "Guest";
+                        } ?></h1>
                         <p class="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum assumenda deleniti optio! Quidem accusamus odio repellat iusto excepturi voluptate officia totam. Qui repellat dolorum deserunt laboriosam sequi, totam nostrum quaerat praesentium rem velit blanditiis nam amet alias quia. Eaque expedita adipisci magnam tenetur accusantium aliquam ducimus quas repellendus voluptate quisquam.</p>
-                        <a href="register.php"><button class="btn btn-dark">Register</button></a>
-                        <a href="login.php"><button class="btn btn-dark">Log In</button></a>
+
+                        <?php if (empty($_SESSION['id'])) {
+                            echo '<a href="register.php"><button class="btn btn-dark btn1">Register</button></a>';
+                            echo '<a href="login.php"><button class="btn btn-dark btn1">Log In</button></a>';
+                        }
+                        ?>
+                        
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12">

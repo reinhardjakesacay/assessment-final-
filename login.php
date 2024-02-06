@@ -1,3 +1,42 @@
+<?php 
+    session_start();
+
+    include("config/config.php");
+
+    if (!empty($_SESSION['id'])) {
+        header("Location: home.php");
+    }
+
+    if(isset($_POST['submit'])){
+        $email = mysqli_real_escape_string($conn,$_POST['email']);
+        $password = mysqli_real_escape_string($conn,$_POST['password']);
+
+        $result = mysqli_query($conn,"SELECT * FROM users WHERE Email='$email' AND Password='$password' ") or die("Select Error");
+        $row = mysqli_fetch_assoc($result);
+
+        if(is_array($row) && !empty($row)){
+            $_SESSION['valid'] = $row['Email'];
+            $_SESSION['id'] = $row['id'];
+
+            // Check if last_visited is set
+            if (isset($_SESSION['last_visited'])) {
+                // Redirect to the last visited page
+                header("Location: " . $_SESSION['last_visited']);
+            } else {
+                // Redirect to home.php as default
+                header("Location: home.php");
+            }
+        } else {
+            echo "<div class='message'>
+                <p>Wrong Email, Username, or Password</p>
+                </div> <br>";
+            echo "<a href='home.php'><button class='btn'>Go Back</button>";
+        }
+    }
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,11 +59,11 @@
   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
 </svg>
-                        <form action="">
-                            <input type="email" name="" id="" class="form-control my-3 py-2" placeholder="Email">
-                            <input type="password" name="" id="" class="form-control my-3 py-2" placeholder="Password">
+                        <form action="login.php" method="post">
+                            <input type="email" name="email" id="email" class="form-control my-3 py-2" placeholder="Email">
+                            <input type="password" name="password" id="password" class="form-control my-3 py-2" placeholder="Password">
                             <div class="text-center mt-3">
-                                <button class="btn btn-primary btn1">Log in
+                                <button class="btn btn-primary btn1" type="submit" name="submit">Log in
                                 </button><br>
                                 <p>Don't have an account? <a href="register.php">Click here!</a></p>
                             </div>

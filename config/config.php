@@ -1,5 +1,4 @@
-<?php 
- 
- $con = mysqli_connect("localhost","root","","dbprofile") or die("Couldn't connect");
+<?php
+    $conn = mysqli_connect("localhost", "root", "", "login_register");
 
 ?>
